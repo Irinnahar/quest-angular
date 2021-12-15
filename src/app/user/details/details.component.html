@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="flex-col">
+    <h1>Users List</h1>
+    <span>
+      <a class="btnstyle" routerLink="/user/">Go Back</a>
+    </span>
+  </div>
+  <div class="col-12 bg-white">
+    <div class="col-wrapper">
+      <strong class="col-6">ID:</strong>
+      <span class="col-6">{{ user.id }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Name:</strong>
+      <span class="col-6">{{ user.name }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Username:</strong>
+      <span class="col-6">{{ user.username }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Phone:</strong>
+      <span class="col-6">{{ user.phone }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Email:</strong>
+      <span class="col-6">{{ user.email }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Website:</strong>
+      <span class="col-6">{{ user.website }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Street:</strong>
+      <span class="col-6">{{ user.address.street }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Suite:</strong>
+      <span class="col-6">{{ user.address.suite }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">City:</strong>
+      <span class="col-6">{{ user.address.city }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Zipcode:</strong>
+      <span class="col-6">{{ user.address.zipcode }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6">Company Name:</strong>
+      <span class="col-6">{{ user.company.name }}</span>
+    </div>
+    <div class="col-wrapper">
+      <strong class="col-6"> Company Catch Phrase:</strong>
+      <span class="col-6">{{ user.company.name }}</span>
+    </div>
+  </div>
+</div>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Please Wait.</p>
+</ngx-spinner>

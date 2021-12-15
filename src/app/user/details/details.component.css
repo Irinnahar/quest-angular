@@ -1,0 +1,10 @@
+.col-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #d5d2d791;
+  padding: 0 !important;
+}
+@media screen and (min-width: 950px) {
+  .container {
+    width: 60%;
+  }
+}

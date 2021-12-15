@@ -1,0 +1,35 @@
+label,
+input {
+  padding: 10px 5px;
+  margin: 8px 8px 8px 0;
+  font-size: 1em;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.container {
+  width: 60%;
+}
+input {
+  border: 1px solid gainsboro;
+}
+.col-7:focus,
+.col-3:focus {
+  border: 0;
+}
+
+@media screen and (max-width: 768px) {
+  label,
+  input,
+  .col-7,
+  .col-3 {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+  }
+  .container {
+    width: 90%;
+  }
+}

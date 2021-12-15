@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  background: #ebe3f899;
+}
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Roboto";
+}
+
+.btnstyle {
+  color: #efefef;
+  padding: 15px;
+  background: #937ca8;
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+  .btnstyle {
+    padding: 0.6em;
+  }
+}
