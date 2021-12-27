@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import { User } from './user';
+import { IUser } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,20 +15,20 @@ export class UserService {
       'Content-Type': 'application/json',
     }),
   };
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _httpClient: HttpClient) {}
 
   // get all the users from the database
-  getAll(): Observable<User[]> {
-    return this.httpClient
-      .get<User[]>(this.baseUrl + '/users/')
+  getAllUser(): Observable<IUser[]> {
+    return this._httpClient
+      .get<IUser[]>(`${this.baseUrl}/users`)
       .pipe(catchError(this.errorHandler));
   }
 
   // create a new user
-  create(user: User): Observable<User> {
-    return this.httpClient
-      .post<User>(
-        this.baseUrl + '/users/',
+  createUser(user: IUser): Observable<IUser> {
+    return this._httpClient
+      .post<IUser>(
+        `${this.baseUrl}/users`,
         JSON.stringify(user),
         this.httpOptions
       )
@@ -38,18 +37,18 @@ export class UserService {
   }
 
   // Find a user by ID
-  find(id: number): Observable<User> {
-    return this.httpClient
-      .get<User>(this.baseUrl + '/users/' + id)
+  getSingleUser(id: number): Observable<IUser> {
+    return this._httpClient
+      .get<IUser>(`${this.baseUrl}/users/${id}`)
 
       .pipe(catchError(this.errorHandler));
   }
 
   // Update a user details
-  update(id: number, user: User): Observable<User> {
-    return this.httpClient
-      .put<User>(
-        this.baseUrl + '/users/' + id,
+  updateUser(id: number, user: IUser): Observable<IUser> {
+    return this._httpClient
+      .patch<IUser>(
+        `${this.baseUrl}/users/${id}`,
         JSON.stringify(user),
         this.httpOptions
       )
@@ -58,9 +57,9 @@ export class UserService {
   }
 
   // delete a user from database
-  delete(id: number) {
-    return this.httpClient
-      .delete<User>(this.baseUrl + '/users/' + id, this.httpOptions)
+  deleteUser(id: number) {
+    return this._httpClient
+      .delete<IUser>(`${this.baseUrl}/users/${id}`, this.httpOptions)
 
       .pipe(catchError(this.errorHandler));
   }

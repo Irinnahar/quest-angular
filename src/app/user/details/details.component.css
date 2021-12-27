@@ -1,7 +1,8 @@
 .col-wrapper {
   width: 100%;
   border-bottom: 1px solid #d5d2d791;
-  padding: 0 !important;
+  display: inline-flex;
+  padding: 15px;
 }
 @media screen and (min-width: 950px) {
   .container {

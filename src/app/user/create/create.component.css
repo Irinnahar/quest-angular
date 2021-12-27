@@ -4,6 +4,12 @@ input {
   margin: 8px 8px 8px 0;
   font-size: 1em;
 }
+h1 {
+  padding: 20px 0;
+  text-align: center;
+}
+
+
 .row:after {
   content: "";
   display: table;
@@ -26,10 +32,10 @@ input {
   .col-7,
   .col-3 {
     width: 100%;
-    padding: 10px;
-    margin: 5px;
   }
   .container {
     width: 90%;
   }
+  label {padding: 0 0 0 10px;}
+  .form-control {flex-flow: column; padding: 0 10px 10px 10px;}
 }

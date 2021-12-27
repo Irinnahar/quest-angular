@@ -1,25 +1,51 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from './../shared/services/user.service';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateComponent } from './create.component';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { RouterTestingModule } from '@angular/router/testing';
+
+class RouterStub {
+  navigate(params: any) {}
+}
 
 describe('CreateComponent', () => {
   let component: CreateComponent;
   let fixture: ComponentFixture<CreateComponent>;
-
+  let userService: UserService;
+  let httpMock: HttpTestingController;
+  let http: HttpClient;
+  let router: Router;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreateComponent],
+      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+
+      providers: [
+        {
+          provide: Router,
+          useClass: RouterStub,
+        },
+      ],
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CreateComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    http = TestBed.inject(HttpClient);
+    userService = TestBed.inject(UserService);
+    httpMock = TestBed.inject(HttpTestingController);
+    userService = fixture.debugElement.injector.get(UserService);
+    router: TestBed.inject(Router);
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    fixture.detectChanges();
   });
 
   it('Test a form group element count', () => {
@@ -29,7 +55,7 @@ describe('CreateComponent', () => {
     expect(inputElements.length).toEqual(12);
   });
 
-  it('CHECK CREATE USER FORM IS VALID WHEN VALIDATION ARE FULFILLED', () => {
+  it('should create a user after the form is validate', () => {
     const userFormNameElement: HTMLInputElement =
       fixture.debugElement.nativeElement
         .querySelector('#userAddForm')
@@ -109,7 +135,7 @@ describe('CreateComponent', () => {
 
     const isUserFormValid = component.userAddForm.valid;
     fixture.whenStable().then(() => {
-      expect(isUserFormValid).toBeTruthy();
+      expect(!isUserFormValid).toBeTruthy();
     });
   });
 });

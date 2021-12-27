@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { UserService } from './../user.service';
-import { User } from './../user';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-create',
@@ -19,7 +18,7 @@ export class CreateComponent implements OnInit {
     this.userAddForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       username: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required]),
       website: new FormControl(''),
       address: new FormGroup({
@@ -40,11 +39,11 @@ export class CreateComponent implements OnInit {
     return this.userAddForm.get('name');
   }
   submitForm() {
-    this.userService.create(this.userAddForm.value).subscribe((res) => {
+    this.userService.createUser(this.userAddForm.value).subscribe((res) => {
       console.log(res);
-
       console.log('User created successfully!');
-      this.router.navigateByUrl('user');
+      //this.router.navigateByUrl('user');
+      this.router.navigate(['user']);
     });
   }
 }

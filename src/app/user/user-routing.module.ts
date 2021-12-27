@@ -6,7 +6,7 @@ import { IndexComponent } from './index/index.component';
 import { UpdateComponent } from './update/update.component';
 import { UserComponent } from './user.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { UserService } from './../user.service';
-import { User } from './../user';
+import { IUser } from '../shared/models/user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'user-index',
@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./index.component.css', '../user.component.css'],
 })
 export class IndexComponent implements OnInit {
-  users: User[] = [];
+  users: IUser[] = [];
   constructor(
     private SpinnerService: NgxSpinnerService,
     public userService: UserService
@@ -19,7 +19,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.SpinnerService.show();
 
-    this.userService.getAll().subscribe((data: User[]) => {
+    this.userService.getAllUser().subscribe((data: IUser[]) => {
       this.users = data;
       console.log(this.users);
       this.SpinnerService.hide();
@@ -27,7 +27,7 @@ export class IndexComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.delete(id).subscribe((response) => {
+    this.userService.deleteUser(id).subscribe((response) => {
       if (confirm('Are you sure to delete this user?? ')) {
         this.users = this.users.filter((user) => user.id !== id);
         console.log('user deleted successfully');

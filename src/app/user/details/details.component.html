@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container bg-white p-3 mt-3">
   <div class="flex-col">
-    <h1>Users List</h1>
+    <h1>{{ user.name }} Details</h1>
     <span>
-      <a class="btnstyle" routerLink="/user/">Go Back</a>
+      <a class="btnstyle" [routerLink]="['/user']">Go Back</a>
     </span>
   </div>
-  <div class="col-12 bg-white">
+  <div class="col-12">
     <div class="col-wrapper">
       <strong class="col-6">ID:</strong>
       <span class="col-6">{{ user.id }}</span>

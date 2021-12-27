@@ -1,156 +1,131 @@
-<div class="container">
-  <h1>Create New User</h1>
-  <div class="col-12 bg-white">
-    <form
-      action=""
-      [formGroup]="userAddForm"
-      id="userAddForm"
-      (ngSubmit)="submitForm()"
-    >
-      <div class="row">
+<div class="container bg-white">
+  <h1>Create a New User</h1>
+
+  <div class="col-12">
+    <form [formGroup]="userAddForm" (ngSubmit)="submitForm()">
+      <div class="form-control">
         <label class="col-3" for="name"
           >Name <span class="alert-danger">*</span>
         </label>
-        <input
-          class="col-7"
-          required
-          formControlName="name"
-          id="name"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userAddForm.controls['name'].invalid &&
-            (userAddForm.controls['name'].dirty ||
-              userAddForm.controls['name'].touched)
-          "
-          class="alert-danger col-12"
-        >
-          <div *ngIf="userAddForm.controls['name'].errors?.['required']">
-            Name is required.
+        <div class="col-7">
+          <input formControlName="name" id="name" type="text" />
+          <div
+            *ngIf="
+              userAddForm.controls['name'].invalid &&
+              (userAddForm.controls['name'].dirty ||
+                userAddForm.controls['name'].touched)
+            "
+          >
+            <span *ngIf="userAddForm.controls['name'].errors?.['required']">
+              Name is required.
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="form-control">
         <label class="col-3" for="username"
           >Username <span class="alert-danger">*</span></label
         >
-        <input
-          class="col-7"
-          formControlName="username"
-          id="username"
-          type="text"
-          required
-        />
-        <div
-          *ngIf="
-            userAddForm.controls['username'].invalid &&
-            (userAddForm.controls['username'].dirty ||
-              userAddForm.controls['username'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userAddForm.controls['username'].errors?.['required']">
-            Username is required.
+        <div class="col-7">
+          <input formControlName="username" id="username" type="text" />
+          <div
+            class="alert-danger"
+            *ngIf="
+              userAddForm.controls['username'].invalid &&
+              (userAddForm.controls['username'].dirty ||
+                userAddForm.controls['username'].touched)
+            "
+          >
+            <span *ngIf="userAddForm.controls['username'].errors?.['required']">
+              Username is required.
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="form-control">
         <label class="col-3" for="phone"
           >Phone Number <span class="alert-danger">*</span></label
         >
-        <input
-          class="col-7"
-          required
-          formControlName="phone"
-          id="phone"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userAddForm.controls['phone'].invalid &&
-            (userAddForm.controls['phone'].dirty ||
-              userAddForm.controls['phone'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userAddForm.controls['phone'].errors?.['required']">
-            Phone Number is required.
+        <div class="col-7">
+          <input formControlName="phone" type="text" />
+          <div
+            class="alert-danger"
+            *ngIf="
+              userAddForm.controls['phone'].invalid &&
+              (userAddForm.controls['phone'].dirty ||
+                userAddForm.controls['phone'].touched)
+            "
+          >
+            <span *ngIf="userAddForm.controls['phone'].errors?.['required']">
+              Phone Number is required.
+            </span>
           </div>
         </div>
       </div>
-      <div class="row">
+
+      <div class="form-control">
         <label class="col-3" for="email"
           >Email <span class="alert-danger">*</span></label
         >
-        <input
-          class="col-7"
-          required
-          formControlName="email"
-          id="email"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userAddForm.controls['email'].invalid &&
-            (userAddForm.controls['email'].dirty ||
-              userAddForm.controls['email'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userAddForm.controls['email'].errors?.['required']">
-            Email is required.
-          </div>
+        <div class="col-7">
+          <input formControlName="email" id="email" type="text" />
+          <p
+            class="alert-danger"
+            *ngIf="
+              userAddForm.controls['email'].invalid &&
+              (userAddForm.controls['email'].dirty ||
+                userAddForm.controls['email'].touched)
+            "
+          >
+            <span *ngIf="userAddForm.controls['email'].errors?.['required'], ">
+              Email is required.
+            </span>
+          </p>
         </div>
       </div>
-      <div class="row">
+
+      <div class="form-control">
         <label class="col-3" for="username">Website</label>
-        <input
-          class="col-7"
-          formControlName="website"
-          id="website"
-          type="text"
-        />
+        <input class="col-7" formControlName="website" type="text" />
       </div>
       <div formGroupName="address">
-        <div class="row">
-          <label class="col-3" class="col-3">Street</label>
-          <input class="col-7" class="col-7" formControlName="street" />
+        <div class="form-control">
+          <label class="col-3">Street</label>
+          <input class="col-7" formControlName="street" />
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Suite</label>
           <input class="col-7" formControlName="suite" />
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">City</label>
           <input class="col-7" formControlName="city" />
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Zipcode</label>
           <input class="col-7" formControlName="zipcode" />
         </div>
       </div>
       <div formGroupName="company">
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Company Name</label>
           <input class="col-7" formControlName="name" />
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Catch Phrase</label>
           <input class="col-7" formControlName="catchPhrase" />
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Company BS</label>
           <input class="col-7" formControlName="bs" />
         </div>
       </div>
-      <div>
-        <span class="col-3"> </span>
+      <div class="form-control">
         <button
           [disabled]="userAddForm.pristine || userAddForm.invalid"
-          class="btnstyle col-3"
+          class="btnstyle col-4 mt-3 mb-3"
           type="submit"
         >
           Submit

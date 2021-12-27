@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { UserService } from './../user.service';
-import { User } from './../user';
+import { UserService } from '../shared/services/user.service';
+import { IUser } from '../shared/models/user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'user-details',
@@ -11,7 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class DetailsComponent implements OnInit {
   id: number = 0;
-  user!: User;
+  user!: IUser;
 
   constructor(
     private userService: UserService,
@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
     this.SpinnerService.show();
     this.id = this.route.snapshot.params['userId'];
     console.log(this.id);
-    this.userService.find(this.id).subscribe((data: User) => {
+    this.userService.getSingleUser(this.id).subscribe((data: IUser) => {
       this.user = data;
       console.log(this.user);
       this.SpinnerService.hide();

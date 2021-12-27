@@ -1,175 +1,175 @@
-<div class="container">
-  <h1>Create New User</h1>
-  <div class="col-12 bg-white">
+<div class="container bg-white">
+  <h1>Update {{ user.name }}'s Info</h1>
+  <div class="col-12">
     <form [formGroup]="userUpdateForm" (ngSubmit)="submitForm()">
-      <div class="row">
-        <label class="col-3" for="name">Title:</label>
-        <input
-          class="col-7"
-          [(ngModel)]="user.name"
-          formControlName="name"
-          id="name"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userUpdateForm.controls['name'].invalid &&
-            (userUpdateForm.controls['name'].dirty ||
-              userUpdateForm.controls['name'].touched)
-          "
-          class="alert-danger"
+      <div class="form-control">
+        <label class="col-3" for="name"
+          >Name <span class="alert-danger">*</span>
+        </label>
+        <div class="col-7">
+          <input
+            [ngModel]="user.name"
+            formControlName="name"
+            id="name"
+            type="text"
+          />
+          <div
+            *ngIf="
+              userUpdateForm.controls['name'].invalid &&
+              (userUpdateForm.controls['name'].dirty ||
+                userUpdateForm.controls['name'].touched)
+            "
+          >
+            <span *ngIf="userUpdateForm.controls['name'].errors?.['required']">
+              Name is required.
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="form-control">
+        <label class="col-3" for="username"
+          >Username <span class="alert-danger">*</span></label
         >
-          <div *ngIf="userUpdateForm.controls['name'].errors?.['required']">
-            Name is required.
+        <div class="col-7">
+          <input
+            [ngModel]="user.username"
+            formControlName="username"
+            id="username"
+            type="text"
+          />
+          <div
+            class="alert-danger"
+            *ngIf="
+              userUpdateForm.controls['username'].invalid &&
+              (userUpdateForm.controls['username'].dirty ||
+                userUpdateForm.controls['username'].touched)
+            "
+          >
+            <span
+              *ngIf="userUpdateForm.controls['username'].errors?.['required']"
+            >
+              Username is required.
+            </span>
           </div>
         </div>
       </div>
 
-      <div class="row">
-        <label class="col-3" for="username">Username</label>
-        <input
-          class="col-7"
-          formControlName="username"
-          id="username"
-          type="text"
-          [(ngModel)]="user.username"
-        />
-        <div
-          *ngIf="
-            userUpdateForm.controls['username'].invalid &&
-            (userUpdateForm.controls['username'].dirty ||
-              userUpdateForm.controls['username'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userUpdateForm.controls['username'].errors?.['required']">
-            Username is required.
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
+      <div class="form-control">
         <label class="col-3" for="phone">Phone Number</label>
-        <input
-          class="col-7"
-          [(ngModel)]="user.phone"
-          formControlName="phone"
-          id="phone"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userUpdateForm.controls['phone'].invalid &&
-            (userUpdateForm.controls['phone'].dirty ||
-              userUpdateForm.controls['phone'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userUpdateForm.controls['phone'].errors?.['required']">
-            Phone Number is required.
-          </div>
+        <div class="col-7">
+          <input
+            [(ngModel)]="user.phone"
+            formControlName="phone"
+            id="phone"
+            type="text"
+          />
+          <p
+            *ngIf="
+              userUpdateForm.controls['phone'].invalid &&
+              (userUpdateForm.controls['phone'].dirty ||
+                userUpdateForm.controls['phone'].touched)
+            "
+            class="alert-danger"
+          >
+            <span *ngIf="userUpdateForm.controls['phone'].errors?.['required']">
+              Phone Number is required.
+            </span>
+          </p>
         </div>
       </div>
-      <div class="row">
+      <div class="form-control">
         <label class="col-3" for="email">Email</label>
-        <input
-          class="col-7"
-          [(ngModel)]="user.email"
-          formControlName="email"
-          id="email"
-          type="text"
-        />
-        <div
-          *ngIf="
-            userUpdateForm.controls['email'].invalid &&
-            (userUpdateForm.controls['email'].dirty ||
-              userUpdateForm.controls['email'].touched)
-          "
-          class="alert-danger"
-        >
-          <div *ngIf="userUpdateForm.controls['email'].errors?.['required']">
-            Email is required.
-          </div>
+        <div class="col-7">
+          <input
+            [(ngModel)]="user.email"
+            formControlName="email"
+            id="email"
+            type="text"
+          />
+          <p
+            *ngIf="
+              userUpdateForm.controls['email'].invalid &&
+              (userUpdateForm.controls['email'].dirty ||
+                userUpdateForm.controls['email'].touched)
+            "
+            class="alert-danger"
+          >
+            <span *ngIf="userUpdateForm.controls['email'].errors?.['required']">
+              Email is required.
+            </span>
+          </p>
         </div>
       </div>
-      <div class="row">
+      <div class="form-control">
         <label class="col-3" for="website">Website</label>
-        <input
-          class="col-7"
-          formControlName="website"
-          id="website"
-          type="text"
-          [(ngModel)]="user.website"
-        />
+        <div class="col-7">
+          <input
+            formControlName="website"
+            id="website"
+            type="text"
+            [(ngModel)]="user.website"
+          />
+        </div>
       </div>
       <div formGroupName="address">
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Street</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.address.street"
-            formControlName="street"
-          />
+          <div class="col-7">
+            <input [(ngModel)]="user.address.street" formControlName="street" />
+          </div>
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Suite</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.address.suite"
-            formControlName="suite"
-          />
+          <div class="col-7">
+            <input [(ngModel)]="user.address.suite" formControlName="suite" />
+          </div>
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">City</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.address.city"
-            formControlName="city"
-          />
+          <div class="col-7">
+            <input [(ngModel)]="user.address.city" formControlName="city" />
+          </div>
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Zipcode</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.address.zipcode"
-            formControlName="zipcode"
-          />
+          <div class="col-7">
+            <input
+              [(ngModel)]="user.address.zipcode"
+              formControlName="zipcode"
+            />
+          </div>
         </div>
       </div>
       <div formGroupName="company">
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Company Name</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.company.name"
-            formControlName="name"
-          />
+          <div class="col-7">
+            <input [(ngModel)]="user.company.name" formControlName="name" />
+          </div>
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Catch Phrase</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.company.catchPhrase"
-            formControlName="catchPhrase"
-          />
+          <div class="col-7">
+            <input
+              [(ngModel)]="user.company.catchPhrase"
+              formControlName="catchPhrase"
+            />
+          </div>
         </div>
-        <div class="row">
+        <div class="form-control">
           <label class="col-3">Company BS</label>
-          <input
-            class="col-7"
-            [(ngModel)]="user.company.bs"
-            formControlName="bs"
-          />
+          <div class="col-7">
+            <input [(ngModel)]="user.company.bs" formControlName="bs" />
+          </div>
         </div>
       </div>
-      <div>
-        <span class="col-3"> </span>
+      <div class="form-control">
         <button
           [disabled]="userUpdateForm.invalid"
-          class="btnstyle col-3"
+          class="btnstyle col-4 mt-3 mb-3"
           type="submit"
         >
-          Submit
+          Update
         </button>
       </div>
     </form>

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { User } from '../user';
-import { UserService } from '../user.service';
+import { IUser } from '../shared/models/user.model';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-update',
@@ -16,7 +16,7 @@ import { UserService } from '../user.service';
 })
 export class UpdateComponent implements OnInit {
   id: number = 0;
-  user!: User;
+  user!: IUser;
   userUpdateForm!: FormGroup;
 
   constructor(
@@ -30,7 +30,7 @@ export class UpdateComponent implements OnInit {
     this.SpinnerService.show();
 
     this.id = this.route.snapshot.params['userId'];
-    this.userService.find(this.id).subscribe((data: User) => {
+    this.userService.getSingleUser(this.id).subscribe((data: IUser) => {
       this.user = data;
       this.SpinnerService.hide();
     });
@@ -58,11 +58,11 @@ export class UpdateComponent implements OnInit {
   submitForm() {
     this.SpinnerService.show();
     this.userService
-      .update(this.id, this.userUpdateForm.value)
+      .updateUser(this.id, this.userUpdateForm.value)
       .subscribe((res) => {
         console.log(res);
         console.log('User updated successfully!');
-        this.router.navigateByUrl('user');
+        this.router.navigate(['user']);
         this.SpinnerService.hide();
       });
   }

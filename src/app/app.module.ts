@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { UserModule } from './user/user.module';
 import { RouterModule } from '@angular/router';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavigationBarComponent],
 
   imports: [
     BrowserModule,
@@ -18,6 +20,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     AppRoutingModule,
     RouterModule,
     NgxSpinnerModule,
+    BrowserAnimationsModule,
   ],
 
   providers: [],
