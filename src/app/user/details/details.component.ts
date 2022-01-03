@@ -7,7 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'user-details',
   templateUrl: './details.component.html',
-  styleUrls: ['../user.component.css', './details.component.css'],
+  styleUrls: ['../user.component.scss', './details.component.scss'],
 })
 export class DetailsComponent implements OnInit {
   id: number = 0;

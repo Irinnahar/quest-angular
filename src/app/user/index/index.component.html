@@ -1,10 +1,15 @@
-<div class="container">
+<div class="container-fluid">
   <div class="flex-col">
-    <h1>Users List</h1>
+    <h2>Users List</h2>
     <span>
       <a class="btnstyle" [routerLink]="['/user/create/']">Add a New User</a>
     </span>
   </div>
+  <ng-container>
+    <div class="success-message" *ngIf="isDeleted">
+      <p>Successfully Deleted!!</p>
+    </div>
+  </ng-container>
   <table>
     <thead>
       <tr>
@@ -39,6 +44,7 @@
             <i class="fas fa-user-edit"></i
           ></a>
           <button
+            class="delete-button"
             title="Delete User"
             type="button"
             (click)="deleteUser(user.id)"
@@ -50,6 +56,7 @@
     </tbody>
   </table>
 </div>
+
 <ngx-spinner
   bdColor="rgba(51, 51, 51, 0.8)"
   size="default"

@@ -1,0 +1,76 @@
+@import '/src/styles.scss';
+
+table {
+  background: map-get($colors , text-white );
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: $default-box-shadow;
+
+  tbody tr {
+    border-bottom: $gray-border;
+
+    &:hover {
+      background: map-get($colors, background-light );
+      transition: 1s;
+    }
+  }
+
+  td,
+  th {
+    padding: .9rem .5rem;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+
+  thead {
+    background: map-get($colors, background-dark);
+    color: map-get($colors, text-white);
+  }
+}
+
+a.btnlink {
+  background: map-get($colors,text-light);
+  padding: .3rem;
+  margin-right: .5rem;
+  border: $purple-border;
+  color: map-get($colors, background-dark);
+  cursor: pointer;
+
+  &:hover{
+    background: map-get($colors, background-dark);
+    color: map-get($colors, text-light);
+    transition: .3s linear;
+  }
+}
+
+
+.delete-button{
+
+  &:hover {
+    background: map-get($colors, background-dark);
+    transition: .3s linear;
+    border: $purple-border;
+  }
+
+  i.far.fa-trash-alt {
+    font-size: 1.1rem;
+    color: map-get($colors, background-dark);
+    padding: .03rem 0;
+    cursor: pointer;
+
+    &:hover{
+      color: map-get($colors, text-light);
+    }
+  }
+}
+
+.action {
+  display: flex;
+}
+
+@media only screen and (max-width: 760px),
+  (min-device-width: 768px) and (max-device-width: 1024px) {
+  .container-fluid { overflow-x: auto;}
+  .flex-col{margin-bottom: 2rem;}
+}

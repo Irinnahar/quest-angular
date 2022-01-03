@@ -1,0 +1,158 @@
+/* You can add global styles to this file, and also import other style files */
+
+$colors: (
+  background-light: #ebe3f899,
+  background-dark: #937ca8,
+  text-light: #efefef,
+  border-dark: #7c6790,
+  text-white: #fff,
+  text-gray: #c0c0c0d5,
+  text-red: #e71515,
+  text-black: #000000
+);
+
+$default-box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+$purple-border: 0.03rem solid map-get($colors , border-dark );
+$gray-border: 0.03rem solid map-get($colors, text-gray);
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  background: map-get($colors, background-light);
+}
+
+.container{
+  width: 60%;
+  margin: 2rem auto;
+  box-shadow: $default-box-shadow;
+  @media screen and (max-width: 768px) {
+    width: 95%;
+  }
+}
+
+.container-fluid{
+  width: 90%;
+  margin: 2rem auto;
+  box-sizing: border-box;
+}
+
+.btnstyle {
+  color: map-get( $colors, text-light);
+  padding: 0.8rem;
+  font-size: 1rem;
+  background: map-get($colors, background-dark);
+  border-radius: 3px;
+  border: $purple-border;
+  box-shadow: $default-box-shadow;
+  cursor: pointer;
+}
+
+.col-default{
+  box-sizing: border-box;
+  padding: 0.8rem;
+}
+
+button:disabled {
+  background: map-get($colors, background-light);
+  color: map-get($colors, text-black);
+  cursor: no-drop;
+}
+
+@mixin full-width{
+  width: 100%;
+  padding: 0.4rem;
+}
+.col-1{
+  @extend .col-default;
+  width: 25%;
+
+  @media screen and (max-width: 768px) {
+    @include full-width();
+  }
+}
+
+.col-2 {
+  @extend .col-default;
+  width: 50%;
+
+   @media screen and (max-width: 768px) {
+     @include full-width();
+   }
+}
+
+.col-3{
+  @extend .col-default;
+  width: 75%;
+
+   @media screen and (max-width: 768px) {
+     @include full-width();
+   }
+}
+
+.col-4{
+  @extend .col-default;
+  width: 100%;
+
+   @media screen and (max-width: 768px) {
+     @include full-width();
+   }
+}
+
+.bg-white {
+  background: map-get($colors, text-white);
+}
+
+.color-gray {
+  background: map-get($colors, text-gray);
+}
+
+.border-bottom {
+  border-bottom: $gray-border;
+}
+
+.alert-danger {
+  color: map-get($colors , text-red );
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid map-get($colors, text-red);
+}
+
+.form-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: {
+    flow: row
+  }
+
+  label {
+    padding: 10px 5px;
+    font-size: 1rem;
+  }
+
+  input {
+    @extend label;
+    border: $gray-border;
+    width: 100%;
+  }
+}
+
+h1 {
+  padding: 20px 0;
+  text-align: center;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  h1 {font-size: 1.5rem; }
+  //.container {width: 95%;}
+  .form-control {
+    flex-flow: column;
+    padding: 0.6rem;
+  }
+
+}

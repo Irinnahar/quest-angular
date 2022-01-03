@@ -1,13 +1,13 @@
 <div class="container bg-white">
   <h1>Create a New User</h1>
 
-  <div class="col-12">
+  <div class="col-4">
     <form [formGroup]="userAddForm" (ngSubmit)="submitForm()">
       <div class="form-control">
-        <label class="col-3" for="name"
-          >Name <span class="alert-danger">*</span>
-        </label>
-        <div class="col-7">
+        <div class="col-1">
+          <label for="name">Name <span class="alert-danger">*</span> </label>
+        </div>
+        <div class="col-3">
           <input formControlName="name" id="name" type="text" />
           <div
             *ngIf="
@@ -24,10 +24,12 @@
       </div>
 
       <div class="form-control">
-        <label class="col-3" for="username"
-          >Username <span class="alert-danger">*</span></label
-        >
-        <div class="col-7">
+        <div class="col-1">
+          <label for="username"
+            >Username <span class="alert-danger">*</span></label
+          >
+        </div>
+        <div class="col-3">
           <input formControlName="username" id="username" type="text" />
           <div
             class="alert-danger"
@@ -45,10 +47,12 @@
       </div>
 
       <div class="form-control">
-        <label class="col-3" for="phone"
-          >Phone Number <span class="alert-danger">*</span></label
-        >
-        <div class="col-7">
+        <div class="col-1">
+          <label for="phone"
+            >Phone Number <span class="alert-danger">*</span></label
+          >
+        </div>
+        <div class="col-3">
           <input formControlName="phone" type="text" />
           <div
             class="alert-danger"
@@ -66,10 +70,10 @@
       </div>
 
       <div class="form-control">
-        <label class="col-3" for="email"
-          >Email <span class="alert-danger">*</span></label
-        >
-        <div class="col-7">
+        <div class="col-1">
+          <label for="email">Email <span class="alert-danger">*</span></label>
+        </div>
+        <div class="col-3">
           <input formControlName="email" id="email" type="text" />
           <p
             class="alert-danger"
@@ -87,45 +91,77 @@
       </div>
 
       <div class="form-control">
-        <label class="col-3" for="username">Website</label>
-        <input class="col-7" formControlName="website" type="text" />
+        <div class="col-1">
+          <label for="username">Website</label>
+        </div>
+        <div class="col-3">
+          <input formControlName="website" type="text" />
+        </div>
       </div>
       <div formGroupName="address">
         <div class="form-control">
-          <label class="col-3">Street</label>
-          <input class="col-7" formControlName="street" />
+          <div class="col-1">
+            <label>Street</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="street" type="text" />
+          </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Suite</label>
-          <input class="col-7" formControlName="suite" />
+          <div class="col-1">
+            <label>Suite</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="suite" type="text" />
+          </div>
         </div>
         <div class="form-control">
-          <label class="col-3">City</label>
-          <input class="col-7" formControlName="city" />
+          <div class="col-1">
+            <label>City</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="city" type="text" />
+          </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Zipcode</label>
-          <input class="col-7" formControlName="zipcode" />
+          <div class="col-1">
+            <label>Zipcode</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="zipcode" type="text" />
+          </div>
         </div>
       </div>
       <div formGroupName="company">
         <div class="form-control">
-          <label class="col-3">Company Name</label>
-          <input class="col-7" formControlName="name" />
+          <div class="col-1">
+            <label>Company Name</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="name" type="text" />
+          </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Catch Phrase</label>
-          <input class="col-7" formControlName="catchPhrase" />
+          <div class="col-1">
+            <label>Catch Phrase</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="catchPhrase" type="text" />
+          </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Company BS</label>
-          <input class="col-7" formControlName="bs" />
+          <div class="col-1">
+            <label>Company BS</label>
+          </div>
+          <div class="col-3">
+            <input formControlName="bs" type="text" />
+          </div>
         </div>
       </div>
       <div class="form-control">
         <button
           [disabled]="userAddForm.pristine || userAddForm.invalid"
-          class="btnstyle col-4 mt-3 mb-3"
+          class="btnstyle col-1 mt-3 mb-3"
           type="submit"
         >
           Submit

@@ -1,0 +1,11 @@
+@import '/src/styles.scss';
+
+.col-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: $gray-border;
+  display: inline-flex;
+  padding: 1rem;
+}
+
+

@@ -7,10 +7,12 @@ import { UserService } from '../shared/services/user.service';
 @Component({
   selector: 'user-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css', '../user.component.css'],
+  styleUrls: ['./index.component.scss', '../user.component.scss'],
 })
 export class IndexComponent implements OnInit {
   users: IUser[] = [];
+  isDeleted: boolean = false;
+
   constructor(
     private SpinnerService: NgxSpinnerService,
     public userService: UserService
@@ -27,11 +29,22 @@ export class IndexComponent implements OnInit {
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe((response) => {
-      if (confirm('Are you sure to delete this user?? ')) {
-        this.users = this.users.filter((user) => user.id !== id);
-        console.log('user deleted successfully');
-      }
+    this.userService.deleteUser(id).subscribe({
+      next: (data) => {
+        if (confirm('Are you sure to delete this user?? ')) {
+          this.users = this.users.filter((user) => user.id !== id);
+          console.log('user deleted successfully');
+          this.isDeleted = true;
+
+          setTimeout(() => {
+            this.isDeleted = false;
+          }, 2000);
+        }
+      },
+      error: (error) => {
+        const errMessage = error.message;
+        console.error('There was an error!', error);
+      },
     });
   }
 }

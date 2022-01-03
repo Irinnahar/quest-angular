@@ -9,9 +9,9 @@ import { UserService } from '../shared/services/user.service';
   selector: 'app-update',
   templateUrl: './update.component.html',
   styleUrls: [
-    '../user.component.css',
-    '../create/create.component.css',
-    './update.component.css',
+    '../user.component.scss',
+    '../create/create.component.scss',
+    './update.component.scss',
   ],
 })
 export class UpdateComponent implements OnInit {

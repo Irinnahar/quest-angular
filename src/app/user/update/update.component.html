@@ -1,12 +1,17 @@
 <div class="container bg-white">
-  <h1>Update {{ user.name }}'s Info</h1>
-  <div class="col-12">
+  <div class="flex-col">
+    <h2>Update {{ user.name }}'s Info</h2>
+    <span>
+      <a class="btnstyle" [routerLink]="['/user']">Go Back</a>
+    </span>
+  </div>
+  <div class="col-4">
     <form [formGroup]="userUpdateForm" (ngSubmit)="submitForm()">
       <div class="form-control">
-        <label class="col-3" for="name"
-          >Name <span class="alert-danger">*</span>
-        </label>
-        <div class="col-7">
+        <div class="col-1">
+          <label for="name">Name <span class="alert-danger">*</span> </label>
+        </div>
+        <div class="col-3">
           <input
             [ngModel]="user.name"
             formControlName="name"
@@ -27,10 +32,12 @@
         </div>
       </div>
       <div class="form-control">
-        <label class="col-3" for="username"
-          >Username <span class="alert-danger">*</span></label
-        >
-        <div class="col-7">
+        <div class="col-1">
+          <label for="username"
+            >Username <span class="alert-danger">*</span></label
+          >
+        </div>
+        <div class="col-3">
           <input
             [ngModel]="user.username"
             formControlName="username"
@@ -55,8 +62,10 @@
       </div>
 
       <div class="form-control">
-        <label class="col-3" for="phone">Phone Number</label>
-        <div class="col-7">
+        <div class="col-1">
+          <label for="phone">Phone Number</label>
+        </div>
+        <div class="col-3">
           <input
             [(ngModel)]="user.phone"
             formControlName="phone"
@@ -78,8 +87,10 @@
         </div>
       </div>
       <div class="form-control">
-        <label class="col-3" for="email">Email</label>
-        <div class="col-7">
+        <div class="col-1">
+          <label for="email">Email</label>
+        </div>
+        <div class="col-3">
           <input
             [(ngModel)]="user.email"
             formControlName="email"
@@ -101,8 +112,10 @@
         </div>
       </div>
       <div class="form-control">
-        <label class="col-3" for="website">Website</label>
-        <div class="col-7">
+        <div class="col-1">
+          <label for="website">Website</label>
+        </div>
+        <div class="col-3">
           <input
             formControlName="website"
             id="website"
@@ -113,26 +126,34 @@
       </div>
       <div formGroupName="address">
         <div class="form-control">
-          <label class="col-3">Street</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Street</label>
+          </div>
+          <div class="col-3">
             <input [(ngModel)]="user.address.street" formControlName="street" />
           </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Suite</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Suite</label>
+          </div>
+          <div class="col-3">
             <input [(ngModel)]="user.address.suite" formControlName="suite" />
           </div>
         </div>
         <div class="form-control">
-          <label class="col-3">City</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>City</label>
+          </div>
+          <div class="col-3">
             <input [(ngModel)]="user.address.city" formControlName="city" />
           </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Zipcode</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Zipcode</label>
+          </div>
+          <div class="col-3">
             <input
               [(ngModel)]="user.address.zipcode"
               formControlName="zipcode"
@@ -142,14 +163,18 @@
       </div>
       <div formGroupName="company">
         <div class="form-control">
-          <label class="col-3">Company Name</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Company Name</label>
+          </div>
+          <div class="col-3">
             <input [(ngModel)]="user.company.name" formControlName="name" />
           </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Catch Phrase</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Catch Phrase</label>
+          </div>
+          <div class="col-3">
             <input
               [(ngModel)]="user.company.catchPhrase"
               formControlName="catchPhrase"
@@ -157,8 +182,10 @@
           </div>
         </div>
         <div class="form-control">
-          <label class="col-3">Company BS</label>
-          <div class="col-7">
+          <div class="col-1">
+            <label>Company BS</label>
+          </div>
+          <div class="col-3">
             <input [(ngModel)]="user.company.bs" formControlName="bs" />
           </div>
         </div>
@@ -166,7 +193,7 @@
       <div class="form-control">
         <button
           [disabled]="userUpdateForm.invalid"
-          class="btnstyle col-4 mt-3 mb-3"
+          class="btnstyle col-2 mt-3 mb-3"
           type="submit"
         >
           Update
