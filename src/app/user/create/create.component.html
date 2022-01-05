@@ -1,8 +1,8 @@
 <div class="container bg-white">
-  <h1>Create a New User</h1>
+  <h2>Create a New User</h2>
 
   <div class="col-4">
-    <form [formGroup]="userAddForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="userAddForm" (ngSubmit)="submitForm()" id="userAddForm">
       <div class="form-control">
         <div class="col-1">
           <label for="name">Name <span class="alert-danger">*</span> </label>

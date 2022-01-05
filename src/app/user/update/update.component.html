@@ -1,4 +1,4 @@
-<div class="container bg-white">
+<div class="container bg-white" *ngIf="isDataLoaded">
   <div class="flex-col">
     <h2>Update {{ user.name }}'s Info</h2>
     <span>
@@ -13,7 +13,7 @@
         </div>
         <div class="col-3">
           <input
-            [ngModel]="user.name"
+            [(ngModel)]="user.name"
             formControlName="name"
             id="name"
             type="text"
@@ -63,7 +63,9 @@
 
       <div class="form-control">
         <div class="col-1">
-          <label for="phone">Phone Number</label>
+          <label for="phone"
+            >Phone Number <span class="alert-danger">*</span>
+          </label>
         </div>
         <div class="col-3">
           <input
@@ -88,7 +90,7 @@
       </div>
       <div class="form-control">
         <div class="col-1">
-          <label for="email">Email</label>
+          <label for="email">Email <span class="alert-danger">*</span> </label>
         </div>
         <div class="col-3">
           <input

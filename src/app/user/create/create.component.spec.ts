@@ -10,6 +10,7 @@ import { CreateComponent } from './create.component';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 class RouterStub {
   navigate(params: any) {}
@@ -22,10 +23,16 @@ describe('CreateComponent', () => {
   let httpMock: HttpTestingController;
   let http: HttpClient;
   let router: Router;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CreateComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+      imports: [
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes([]),
+      ],
 
       providers: [
         {
@@ -48,11 +55,46 @@ describe('CreateComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    fixture.destroy();
+  });
+
   it('Test a form group element count', () => {
     const formElement =
       fixture.debugElement.nativeElement.querySelector('#userAddForm');
     const inputElements = formElement.querySelectorAll('input');
     expect(inputElements.length).toEqual(12);
+  });
+
+  it('should check username value before entering some value and validation', () => {
+    const userFormUsernameElement: HTMLInputElement =
+      fixture.debugElement.nativeElement
+        .querySelector('#userAddForm')
+        .querySelectorAll('input')[1];
+
+    const usernameValueFormGroup = component.userAddForm.get('username');
+    expect(userFormUsernameElement.value).toEqual(
+      usernameValueFormGroup?.value
+    );
+    expect(usernameValueFormGroup?.errors).not.toBeNull();
+    expect(usernameValueFormGroup?.hasError('required')).toBeTruthy();
+  });
+
+  it('should check username value after entering some value and validation', () => {
+    const userFormUsernameElement: HTMLInputElement =
+      fixture.debugElement.nativeElement
+        .querySelector('#userAddForm')
+        .querySelectorAll('input')[1];
+    userFormUsernameElement.value = 'irin@gmail.com';
+    userFormUsernameElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const usernameValueFormGroup = component.userAddForm.get('username');
+      expect(userFormUsernameElement.value).toEqual(
+        usernameValueFormGroup?.value
+      );
+      expect(usernameValueFormGroup?.errors).toBeNull();
+    });
   });
 
   it('should create a user after the form is validate', () => {

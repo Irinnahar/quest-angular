@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { IUser } from '../shared/models/user.model';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from '../shared/services/user.service';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
   selector: 'user-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss', '../user.component.scss'],
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
   isDeleted: boolean = false;
+  subscription!: Subscription;
 
   constructor(
     private SpinnerService: NgxSpinnerService,
@@ -21,15 +23,17 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.SpinnerService.show();
 
-    this.userService.getAllUser().subscribe((data: IUser[]) => {
-      this.users = data;
-      console.log(this.users);
-      this.SpinnerService.hide();
-    });
+    this.subscription = this.userService
+      .getAllUser()
+      .subscribe((data: IUser[]) => {
+        this.users = data;
+        console.log(this.users);
+        this.SpinnerService.hide();
+      });
   }
 
   deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe({
+    this.subscription = this.userService.deleteUser(id).subscribe({
       next: (data) => {
         if (confirm('Are you sure to delete this user?? ')) {
           this.users = this.users.filter((user) => user.id !== id);
@@ -43,8 +47,12 @@ export class IndexComponent implements OnInit {
       },
       error: (error) => {
         const errMessage = error.message;
-        console.error('There was an error!', error);
+        console.error('There was an error!', errMessage);
       },
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

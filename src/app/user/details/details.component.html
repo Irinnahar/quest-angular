@@ -1,6 +1,6 @@
-<div class="container bg-white">
+<div class="container bg-white" *ngIf="isDataLoaded">
   <div class="flex-col">
-    <h1>{{ user.name }} Details</h1>
+    <h2>{{ user.name }} Details</h2>
     <span>
       <a class="btnstyle" [routerLink]="['/user']">Go Back</a>
     </span>

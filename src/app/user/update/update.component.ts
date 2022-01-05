@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Subscription } from 'rxjs';
 import { IUser } from '../shared/models/user.model';
 import { UserService } from '../shared/services/user.service';
 
@@ -14,10 +15,12 @@ import { UserService } from '../shared/services/user.service';
     './update.component.scss',
   ],
 })
-export class UpdateComponent implements OnInit {
-  id: number = 0;
+export class UpdateComponent implements OnInit, OnDestroy {
+  id!: number;
   user!: IUser;
   userUpdateForm!: FormGroup;
+  subscription!: Subscription;
+  isDataLoaded: boolean = false;
 
   constructor(
     public userService: UserService,
@@ -30,10 +33,13 @@ export class UpdateComponent implements OnInit {
     this.SpinnerService.show();
 
     this.id = this.route.snapshot.params['userId'];
-    this.userService.getSingleUser(this.id).subscribe((data: IUser) => {
-      this.user = data;
-      this.SpinnerService.hide();
-    });
+    this.subscription = this.userService
+      .getSingleUser(this.id)
+      .subscribe((data: IUser) => {
+        this.user = data;
+        this.SpinnerService.hide();
+        this.isDataLoaded = true;
+      });
 
     this.userUpdateForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
@@ -65,5 +71,9 @@ export class UpdateComponent implements OnInit {
         this.router.navigate(['user']);
         this.SpinnerService.hide();
       });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
